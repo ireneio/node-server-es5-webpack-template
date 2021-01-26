@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "start": "npm run build:prod && babel-node ./dist/app.bundle.js",
-    "dev": "nodemon --exec babel-node ./bin/www",
-    "dev:bundled": "nodemon --exec babel-node ./dist/app.bundle.js",
+    "dev": "cross-env NODE_APP_CORS_URL=http://localhost:3000 nodemon --exec babel-node ./bin/www",
+    "dev:bundled": "cross-env NODE_APP_CORS_URL=http://localhost:3000 nodemon --exec babel-node ./dist/app.bundle.js",
     "build:dev": "webpack-cli --config webpack.config.cjs -w --progress --color",
-    "build:prod": "webpack --config webpack.config.cjs --progress --color"
+    "build:prod": "webpack --config webpack.config.cjs --progress --color",
+    "docker:dev": "bash ./docker-build-run.sh",
+    "docker:hub": "bash ./docker-build-push.sh",
+    "azure": "bash ./azure-deploy.sh"
   },
   "dependencies": {
     "@babel/core": "^7.12.10",
@@ -20,6 +23,7 @@
     "babel-preset-env": "^1.7.0",
     "chalk": "^4.1.0",
     "cookie-parser": "~1.4.4",
+    "cross-env": "^7.0.3",
     "express": "~4.16.1",
     "http": "0.0.1-security",
     "http-errors": "~1.6.3",

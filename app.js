@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // CORS Headers
 app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Origin', process.env.NODE_APP_CORS_URL)
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
   res.setHeader('Access-Control-Allow-Headers', ['Authorization', 'Content-Type'])
   next()
